@@ -9,11 +9,19 @@
 <body>
     <button onclick="pokazTekst()">Pokaz tekst</button>
     <p id="tekst"></p>
+    <img id="obrazek" src="https://picsum.photos/200/300">
+    <button onclick="przelaczObrazek()">Pokaż / Ukryj obrazek</button>
     <script>
         console.log("pozdrawiam.");
         function pokazTekst(){
             document.getElementById('tekst').innerHTML = 
             "Tekst akapitu";
+        }
+        function przelaczObrazek(){
+            if(document.getElementById('obrazek').style.display == "block")
+                document.getElementById('obrazek').style.display = "none";
+            else
+                document.getElementById('obrazek').style.display = "block";
         }
     </script>
 </body>
