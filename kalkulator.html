@@ -27,14 +27,22 @@
 
             var option = document.getElementsByName('option').value;
             
-            if(option == 'dodawanie'){
-
-            }else if(option == 'odejmowanie'){
-
-            }else if(option == 'mnozenie'){
-
-            }else if(option == 'dzielenie'){
-
+            if(document.getElementById('dod').checked){
+                var wynik = liczba1 + liczba2;
+                console.log(wynik);
+                document.getElementById('wynik').innerHTML = wynik;
+            }else if(document.getElementById('ode').checked){
+                var wynik = liczba1 - liczba2;
+                console.log(wynik);
+                document.getElementById('wynik').innerHTML = wynik;
+            }else if(document.getElementById('mno').checked){
+                var wynik = liczba1 * liczba2;
+                console.log(wynik);
+                document.getElementById('wynik').innerHTML = wynik;
+            }else if(document.getElementById('dzi').checked){
+                var wynik = liczba1 / liczba2;
+                console.log(wynik);
+                document.getElementById('wynik').innerHTML = wynik;
             }
         }
     </script>
