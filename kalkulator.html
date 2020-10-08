@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Podaj Pierwszą Liczbę:<input id="liczba1" type="numer"> <br>
+    Podaj Drugą Liczbę:<input id="liczba2" type="numer"> <br>
+<div id="options">
+    Dodawanie:<input type="radio" id="dod" name="option" value="dodawanie"> <br>
+    Odejmowanie:<input type="radio" id="ode" name="option" value="odejmowanie"> <br>
+    Mnożenie:<input type="radio" id="mno" name="option" value="mnozenie"> <br>
+    Dzielenie:<input type="radio" id="dzi" name="option" value="dzielenie"> <br>
+
+    <button onclick="Oblicz()">Oblicz</button>
+    <p id="wynik"></p>
+</div>
+    <script>
+        function Oblicz(){
+            var liczba1 = document.getElementById('liczba1').value;
+            var liczba2 = document.getElementById('liczba2').value;
+            liczba1 = parseInt(liczba1);
+            liczba2 = parseInt(liczba2);
+
+            var option = document.getElementsByName('option').value;
+            
+            if(option == 'dodawanie'){
+
+            }else if(option == 'odejmowanie'){
+
+            }else if(option == 'mnozenie'){
+
+            }else if(option == 'dzielenie'){
+
+            }
+        }
+    </script>
+</body>
+</html>
