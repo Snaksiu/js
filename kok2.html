@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Podstawa Potęgi: <input type="number" id="podstawa"><br>
+    Wykładnik potęgi: <input type="number" id="wykladnik"><br>
+    <button onclick="policzPotege()">Policz</button><br>
+    <p id="wynik"></p>
+    <script>
+        function policzPotege(){
+            var podstawa = document.getElementById('podstawa').value;
+            podstawa = parseInt(podstawa);
+            var wykladnik = document.getElementById('wykladnik').value;
+            wykladnik = parseInt(wykladnik);
+
+            var wynik = Math.pow(podstawa, wykladnik);
+            console.log(wynik);
+            document.getElementById('wynik').innerHTML = wynik;
+        
+        
+        }
+    </script>
+</body>
+</html>
