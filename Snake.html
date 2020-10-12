@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="c" width="800" height="600"></canvas>
+
+    <script>
+        var canvas = document.getElementById('c');
+        var ctx = canvas.getContext('2d');
+        var snake = {x: 400,y: 300};
+        //ctx.fillRect(25,25,10,100);
+        setInterval("gameloop()", 100);
+
+        function gameloop(){
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0,0,800,600);
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(snake.x, snake.y, 10, 10);
+
+            snake.y +=10;
+            //console.log(snake);
+
+            if(snake.y < 0 || snake.y > 600){
+                alert("You lose");
+            }
+
+
+
+
+        }
+
+    </script>
+</body>
+</html>
