@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,34 +7,64 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-    <canvas id="c" width="800" height="600"></canvas>
+<body onkeydown="changeDirection(event)">
+    <canvas id="c" width="800" height="600" style="border: 1px solid;"></canvas>
 
     <script>
         var canvas = document.getElementById('c');
         var ctx = canvas.getContext('2d');
-        var snake = {x: 400,y: 300};
-        //ctx.fillRect(25,25,10,100);
-        setInterval("gameloop()", 100);
+        var snake = {x: 400, y: 300};
+        var kierunek = "right";
+        setInterval("gameLoop()", 50);
 
-        function gameloop(){
+        function changeDirection(e){
+            //console.log(e);
+            switch(e.key){
+                case "w":
+                kierunek = "up";
+                break;
+                case "s":
+                kierunek = "down";
+                break;
+                case "a":
+                kierunek = "left";
+                break;
+                case "d":
+                kierunek = "right";
+                break;
+            }
+        }
+
+        function gameLoop(){
             ctx.fillStyle = "#FFFFFF";
             ctx.fillRect(0,0,800,600);
             ctx.fillStyle = "#000000";
             ctx.fillRect(snake.x, snake.y, 10, 10);
-
-            snake.y +=10;
+            
+            //snake.y += 10;
+            switch (kierunek){
+                case "down":
+                snake.y += 10;
+                break;
+                case "up":
+                snake.y -= 10;
+                break;
+                case "left":
+                snake.x -= 10;
+                break;
+                case "right":
+                snake.x += 10;
+                break;
+            }
             //console.log(snake);
 
-            if(snake.y < 0 || snake.y > 600){
-                alert("You lose");
+
+
+            if(snake.y < 0 || snake.y > 600 || snake.x < 0 || snake.x > 800){
+                snake = {x: 400, y: 300};
+                alert("Przegrałeś pajacu.");
             }
-
-
-
-
         }
-
     </script>
 </body>
 </html>
