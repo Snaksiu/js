@@ -8,63 +8,112 @@
     <title>Document</title>
 </head>
 <body onkeydown="changeDirection(event)">
-    <canvas id="c" width="800" height="600" style="border: 1px solid;"></canvas>
-
+     <canvas id="c" width="1000" height="800" style="border: 5px solid;"></canvas>
+    <p id="points"><b1>Score: 0</b1></p>
     <script>
         var canvas = document.getElementById('c');
         var ctx = canvas.getContext('2d');
-        var snake = {x: 400, y: 300};
+        var snake = Array(
+            {x:400, y:300},
+            {x:390, y:300},
+            {x:380, y:300},
+            {x:370, y:300},
+        );
+        var food = {x:300, y: 200};
+        spawnFood();
         var kierunek = "right";
-        setInterval("gameLoop()", 50);
+        var points = 0;
+        setInterval("gameLoop()", 35);
 
         function changeDirection(e){
-            //console.log(e);
+            
             switch(e.key){
-                case "w":
+                case "ArrowUp":
                 kierunek = "up";
                 break;
-                case "s":
+                case "ArrowDown":
                 kierunek = "down";
                 break;
-                case "a":
+                case "ArrowLeft":
                 kierunek = "left";
                 break;
-                case "d":
+                case "ArrowRight":
                 kierunek = "right";
                 break;
             }
         }
 
+        function spawnFood() {
+            var x = Math.random();
+            x *= 80;
+            x = Math.round(x);
+            x = x*10;
+
+            var y = Math.random();
+            y *= 60;
+            y = Math.round(y);
+            y = y*10;
+
+            food.x = x;
+            food.y = y;
+        }
+
         function gameLoop(){
-            ctx.fillStyle = "#FFFFFF";
-            ctx.fillRect(0,0,800,600);
-            ctx.fillStyle = "#000000";
-            ctx.fillRect(snake.x, snake.y, 10, 10);
+            ctx.fillStyle = "#4A4140";
+            ctx.fillRect(0,0,1000,800);
+
+            if(snake[0].x == food.x && snake[0].y == food.y){
+                
+                points++;
+                document.getElementById('points').innerHTML = "Score: " + points;
+                spawnFood();
+            }else {
+                snake.pop();
+            }
             
-            //snake.y += 10;
+            var glowax = snake[0].x;
+            var gloway = snake[0].y;
+
             switch (kierunek){
                 case "down":
-                snake.y += 10;
+                
+                gloway += 10;
                 break;
                 case "up":
-                snake.y -= 10;
+                
+                gloway -= 10;
                 break;
                 case "left":
-                snake.x -= 10;
+                
+                glowax -= 10;
                 break;
                 case "right":
-                snake.x += 10;
+                
+                glowax += 10;
                 break;
             }
-            //console.log(snake);
+            var nowaGlowa = {x: glowax, y: gloway};
+            console.log(nowaGlowa);
+            snake.unshift(nowaGlowa);
+            
+            ctx.fillStyle = "#BE7110";
+            ctx.fillRect(food.x, food.y, 10, 10);
 
-
-
-            if(snake.y < 0 || snake.y > 600 || snake.x < 0 || snake.x > 800){
-                snake = {x: 400, y: 300};
-                alert("You Died.");
+            ctx.fillStyle = "#10BE35";
+            for(var i = 0; i < snake.length; i++){
+                ctx.fillRect(snake[i].x, snake[i].y, 10, 10);
+            }
+            if(snake[0].y < 0 || snake[0].y >= 800 || snake[0].x < 0 || snake[0].x >= 1000){
+                alert("You died.");
+                snake = Array(
+                    {x:400, y:300},
+                    {x:390, y:300},
+                    {x:380, y:300},
+                    {x:370, y:300},
+                );
             }
         }
+        
     </script>
 </body>
 </html>
