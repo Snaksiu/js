@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="memmory.css">
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        var losowanaListaKart = Array();
+        var odslonieteKarty = Array();
+        var odslonietaKarta = null;
+        losujKarty();
+        pokazKarty();
+
+        
+        function pokazKarty() {
+            document.getElementById('container').innerHTML = "";
+            for(var i = 0 ; i < losowanaListaKart.length ; i++) {
+                var img = document.createElement("img");
+                if(odslonieteKarty[i] == true)
+                    img.src = losowanaListaKart[i];
+                else 
+                    img.src = "img/plecy.jpg";
+                img.id = i.toString();
+                img.addEventListener("click", odslonKarte, false);
+                document.getElementById('container').appendChild(img);
+            }
+        }
+        function odslonKarte(event) {
+            console.log(event.srcElement.id);
+            
+            if(odslonietaKarta == null) {
+                //kliknelismy pierwszą karte
+                odslonietaKarta = event.srcElement.id;
+                odslonieteKarty[event.srcElement.id] = true;
+            } else {
+                //już jakaś byłą kliknięta i jej indeks jest w zmiennej odlslonieta karta
+                if(losowanaListaKart[odslonietaKarta] == losowanaListaKart[event.srcElement.id]) {
+                    //kliknelismy 2-gą taką samą
+                    odslonieteKarty[event.srcElement.id] = true; //odsłaniamy drugą
+                    odslonietaKarta = null; //zerujemy pierwszą
+                } else {
+                    //kliknelismy inna karte
+                    odslonieteKarty[odslonietaKarta] = false; //schowaj tą pierwszą 
+                    odslonietaKarta = null; //zerujemy pierwszą
+                }
+            }
+            console.log(odslonieteKarty);
+
+            pokazKarty();
+        }
+        function losujKarty() {
+            var listaKart = Array(); //ma przechowywac url wzgędem index.html - img/0x.jpg
+            for (var i = 1; i <= 9; i++) {
+                var url = "img/0" + i + ".jpg"
+                listaKart.push(url);
+                listaKart.push(url);
+            }
+            while(listaKart.length > 0) {
+                var r = Math.random() * (listaKart.length - 1);
+                r = Math.round(r);
+                var wyciagnietaKarta = listaKart.splice(r, 1)[0]; 
+                losowanaListaKart.push(wyciagnietaKarta);
+                odslonieteKarty.push(false);
+            }
+            console.log(losowanaListaKart);
+            
+        }
+    </script>
+</body>
+</html>

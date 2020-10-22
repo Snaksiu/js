@@ -1,0 +1,7 @@
+#container {
+    width: 1440px;
+    margin: 0 auto;
+}
+#container > img {
+    padding: 10px 20px;
+}
